@@ -26,7 +26,8 @@ fi
 
 cmake=( cmake )
 if [ -n "$INPUT_CMAKEFLAGS" ]; then
-    cmake+=( $INPUT_CMAKEFLAGS )
+    IFS=' ' read -r -a cmakeflags <<< "$INPUT_CMAKEFLAGS"
+    cmake+=( $"{cmakeflags[@]}" )
 fi
 
 set -e -x
